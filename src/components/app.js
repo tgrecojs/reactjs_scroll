@@ -49,7 +49,7 @@ const App = ({headline = 'Snag Films Catalog'}) =>
         ;
 
 App.propTypes = {
-    headline: string
+  headline: string
 };
 
 export default App;

@@ -1,12 +1,11 @@
 {
-  "name": "react-parcel",
+  "name": "reactjs-movie-scroller",
   "version": "1.0.0",
-  "main": "index.js",
   "scripts": {
     "start": "parcel index.html",
-    "build": "parcel build index.html --no-minify --out-dir prod"
+    "build": "parcel build index.html --no-minify"
   },
-  "author": "Alex Jover <alexjovermorales@gmail.com>",
+  "author": "Thomas Greco <thomasjosephgreco@gmail.com>",
   "license": "MIT",
   "devDependencies": {
     "babel-eslint": "^8.2.3",
