@@ -2,8 +2,13 @@ import React from 'react';
 import { RenderComps } from './Slider';
 import Movies from './Movies';
 import {  injectGlobal } from 'react-emotion';
-import {Spinner, FirstBall, SecondBall, Wrapper, Container, Row, RowContent } from '../shared/styled';
+import Slider from './Slider';
+import LoadingSpinner from '../shared/Spinner';
+import { Wrapper, Container, Row, RowContent, Spinner } from '../shared/styled';
 import PropTypes from 'prop-types';
+import { actionTypes } from '../store/reducer';
+
+import { connect } from 'react-redux';
 const { string } = PropTypes;
 
 injectGlobal`
@@ -24,32 +29,31 @@ h1 {
 }
 `;
 
-const LoadingSpinner = () => (
-  <Spinner>
-    <FirstBall />
-    <SecondBall />
-  </Spinner>
-);
-const App = ({headline = 'Snag Films Catalog'}) =>
-  <Wrapper>
-    <Container>
-      <h1>{headline}</h1>
-      <Row>
-        <RowContent>
-          <Movies>
-            {
-              ({loading, movies}) => loading ?
-                <LoadingSpinner /> :
-                <RenderComps data={movies}/>
-            }
-          </Movies>
-        </RowContent>
-      </Row>
-    </Container></Wrapper>
-        ;
+class App extends React.Component {
+  componentDidMount() {
+    this.props.dispatch({type: actionTypes.initialize });
+  }
+  render() {
+    return (
+      <Wrapper>
+        <Container>
+          <h1>{this.props.headline}</h1>
+          <Row>
+            <RowContent>
+              {
+                this.props.loading === true ? <LoadingSpinner /> : <Slider data={this.props.data}/>
+              }
+            </RowContent>
+          </Row>
+        </Container></Wrapper>
+    );
+  }
+};
 
 App.propTypes = {
   headline: string
 };
 
-export default App;
+const mapStateToProps = state => ({loading: state.loading, data: state.data });
+
+export default connect(mapStateToProps)(App);

@@ -21,7 +21,8 @@ Comp.propTypes = {
   imgUrl: string
 };
 
-export const RenderComps = ({data}) => data.map(x =>
+const RenderComps = ({data}) => data.map(x =>
   <Comp key={x.id} title={x.title} imgUrl={x.images.image[0].src} />);
 
-export { Comp };
+
+export default RenderComps;
