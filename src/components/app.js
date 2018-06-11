@@ -1,10 +1,8 @@
 import React from 'react';
-import { RenderComps } from './Slider';
-import Movies from './Movies';
 import {  injectGlobal } from 'react-emotion';
 import Slider from './Slider';
 import LoadingSpinner from '../shared/Spinner';
-import { Wrapper, Container, Row, RowContent, Spinner } from '../shared/styled';
+import { Wrapper, Container, Row, RowContent } from '../shared/styled';
 import PropTypes from 'prop-types';
 import { actionTypes } from '../store/reducer';
 
@@ -51,7 +49,10 @@ class App extends React.Component {
 };
 
 App.propTypes = {
-  headline: string
+  headline: string,
+  loading: PropTypes.bool,
+  data: PropTypes.array,
+  dispatch: PropTypes.func
 };
 
 const mapStateToProps = state => ({loading: state.loading, data: state.data });

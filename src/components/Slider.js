@@ -1,9 +1,9 @@
 import React from 'react';
-import {Tile, imageStyles, Details } from '../shared/styled';
+import { Tile, imageStyles, Details } from '../shared/styled';
 import PropTypes from 'prop-types';
 const { string } = PropTypes;
 
-const Comp = ({title, imgUrl}) => (
+const Movie = ({title, imgUrl}) => (
   <Tile className="tile">
     <div>
       <img className={`${imageStyles}`} src={imgUrl} />
@@ -16,13 +16,16 @@ const Comp = ({title, imgUrl}) => (
   </Tile>
 );
 
-Comp.propTypes = {
+Movie.propTypes = {
   title: string,
   imgUrl: string
 };
 
 const RenderComps = ({data}) => data.map(x =>
-  <Comp key={x.id} title={x.title} imgUrl={x.images.image[0].src} />);
+  <Movie key={x.id} title={x.title} imgUrl={x.images.image[0].src} />);
 
+RenderComps.propTypes = {
+  data: PropTypes.array
+};
 
 export default RenderComps;
